@@ -1,18 +1,18 @@
+import config from 'semantic-release-preconfigured-conventional-commits' with { type: 'json' };
 
-const publishCmd = `
-./gradlew publish || exit 4
-`
+export default {
+    ...config,
+    plugins: [
+        ...config.plugins.filter(p => !(Array.isArray(p) && p[0] === '@semantic-release/exec')),
 
-import config from 'semantic-release-preconfigured-conventional-commits' with { type: "json" };
+        ['@semantic-release/exec', {
+            prepareCmd: './gradlew --no-daemon clean build || exit 4',
+        }],
 
-config.plugins.push(
-    [
-        "@semantic-release/exec",
-        {
-            "publishCmd": publishCmd,
-        }
+        ['@semantic-release/github', {
+            assets: ['build/libs/*-all.jar'],
+        }],
+
+        '@semantic-release/git',
     ],
-    "@semantic-release/github",
-    "@semantic-release/git",
-)
-export default config
+};

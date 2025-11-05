@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.gitSemVer)
     alias(libs.plugins.kotlin)
     alias(libs.plugins.kotlin.qa)
+    alias(libs.plugins.shadow)
     alias(libs.plugins.taskTree)
 }
 
@@ -40,6 +41,16 @@ tasks.withType<KotlinCompile>().configureEach {
         freeCompilerArgs.add("-Xexpect-actual-classes")
     }
 }
+
+tasks.shadowJar {
+    archiveBaseName.set("deployer") // custom name
+    archiveClassifier.set("") // keeps the "-all" suffix, can be removed
+
+    manifest { attributes["Main-Class"] = "io.github.deployer.MainKt" }
+}
+
+// optional: make `build` also produce the fat jar
+tasks.build { dependsOn(tasks.shadowJar) }
 
 detekt {
     config.from(".detekt.yml")
