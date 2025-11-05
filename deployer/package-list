@@ -1,0 +1,6 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:io.github.deployer////PointingToDeclaration/deployer/io.github.deployer/index.html
+$dokka.location:io.github.deployer/MainKt///PointingToDeclaration/deployer/io.github.deployer/-main-kt/index.html
+$dokka.location:io.github.deployer/MainKt/main/#kotlin.Array[kotlin.String]/PointingToDeclaration/deployer/io.github.deployer/-main-kt/main.html
+io.github.deployer
