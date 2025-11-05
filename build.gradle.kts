@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
+    application
     alias(libs.plugins.dokka)
     alias(libs.plugins.gitSemVer)
     alias(libs.plugins.kotlin)
@@ -43,14 +44,16 @@ tasks.withType<KotlinCompile>().configureEach {
 }
 
 tasks.shadowJar {
-    archiveBaseName.set("deployer") // custom name
-    archiveClassifier.set("") // keeps the "-all" suffix, can be removed
-
-    manifest { attributes["Main-Class"] = "io.github.deployer.MainKt" }
+    archiveVersion = providers.gradleProperty("releaseVersion").orElse("0.0.0-dev")
+    archiveClassifier = ""
+    archiveBaseName = "deployer"
 }
 
-// optional: make `build` also produce the fat jar
-tasks.build { dependsOn(tasks.shadowJar) }
+application {
+    mainClass.set("io.github.deployer.MainKt")
+}
+
+tasks.jar { enabled = false }
 
 detekt {
     config.from(".detekt.yml")

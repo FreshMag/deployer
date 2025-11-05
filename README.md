@@ -14,3 +14,28 @@
 
 **Deployer** is a tool to facilitate deployment of war files to wildfly servers.
 
+## Quick start
+
+1. Download the latest release from the [Releases](https://www.github.com/FreshMag/deployer/releases) page.
+2. Create a script to run the jar file. For example, create a file named `deployer.sh` with the following content:
+    ```sh
+    #!/bin/sh
+    java -jar path/to/deployer.jar "$@"
+    ```
+   Or in windows, create a file named `deployer.bat` with the following content:
+    ```bat
+    @echo off
+    java -jar path\to\deployer.jar %*
+    ```
+3. Make the script executable:
+    ```sh
+    chmod +x deployer.sh
+    ```
+4. (Optional) Move the script to a directory in your system's PATH for easier access:
+    ```sh
+    mv deployer.sh /usr/local/bin/deployer
+    ```
+5. Run the deployer with the desired arguments. For example:
+    ```sh
+    ./deployer.sh --in-place
+    ```
