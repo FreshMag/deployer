@@ -1,5 +1,6 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import java.time.Instant
 
 plugins {
     application
@@ -43,10 +44,27 @@ tasks.withType<KotlinCompile>().configureEach {
     }
 }
 
+val gitHash =
+    providers
+        .exec {
+            commandLine("git", "rev-parse", "--short", "HEAD")
+        }.standardOutput.asText
+        .map { it.trim() }
+        .orElse("unknown")
+
 tasks.shadowJar {
     archiveVersion = providers.gradleProperty("releaseVersion").orElse("0.0.0-dev")
     archiveClassifier = ""
     archiveBaseName = "deployer"
+
+    manifest {
+        attributes(
+            "Implementation-Title" to project.name,
+            "Implementation-Version" to archiveVersion,
+            "Implementation-Commit" to gitHash.get(),
+            "Built-Timestamp" to Instant.now().toString(),
+        )
+    }
 }
 
 application {
