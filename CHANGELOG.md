@@ -1,3 +1,9 @@
+## [1.0.1](https://github.com/FreshMag/deployer/compare/1.0.0...1.0.1) (2025-11-10)
+
+### Bug Fixes
+
+* added version in the JAR manifest ([0c53816](https://github.com/FreshMag/deployer/commit/0c538165eee21d2dbba5e4d8613a58c461f858df))
+
 ## 1.0.0 (2025-11-05)
 
 ### Features
