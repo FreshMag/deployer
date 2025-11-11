@@ -1,3 +1,9 @@
+## [1.1.0](https://github.com/FreshMag/deployer/compare/1.0.0...1.1.0) (2025-11-11)
+
+### Features
+
+* moved to monorepo ([8eebbc5](https://github.com/FreshMag/deployer/commit/8eebbc5290799c09a48f2ddc6910ad86be7763b1))
+
 ## 1.0.0 (2025-11-10)
 
 ### Features
