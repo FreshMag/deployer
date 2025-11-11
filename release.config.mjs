@@ -8,7 +8,7 @@ export default {
             prepareCmd: './gradlew --no-daemon -PreleaseVersion=${nextRelease.version} clean build',
         }],
         ['@semantic-release/github', {
-            assets: ['build/libs/*.jar'],
+            assets: ['core/build/libs/*.jar'],
         }],
         '@semantic-release/git',
     ],

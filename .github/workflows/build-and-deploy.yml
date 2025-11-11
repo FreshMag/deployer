@@ -107,7 +107,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
           branch: gh-pages
-          folder: build/dokka/html
+          folder: core/build/dokka/html
 
   success:
     runs-on: ubuntu-24.04

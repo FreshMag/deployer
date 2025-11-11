@@ -13,6 +13,7 @@ pluginManagement {
         google()
         mavenCentral()
     }
+    includeBuild("build-logic")
 }
 
 plugins {
@@ -39,3 +40,5 @@ gitHooks {
 }
 
 rootProject.name = "deployer"
+
+include("core")
